@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.source_files        = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
 
-  s.default_subspec     = 'https'
+  s.default_subspec     = 'precompiled-full-gpl'
 
   s.dependency          'Flutter'
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
@@ -130,6 +130,18 @@ Pod::Spec.new do |s|
     ss.public_header_files  = 'Classes/**/*.h'
     ss.dependency 'ffmpeg-kit-ios-full-gpl', "6.0.LTS"
     ss.ios.deployment_target = '10'
+  end
+
+  s.subspec 'precompiled-full-gpl' do |ss|
+    ss.ios.deployment_target = '12.1'
+    ss.vendored_frameworks =  'Frameworks/full-gpl/ffmpegkit.xcframework',
+                              'Frameworks/full-gpl/libavcodec.xcframework',
+                              'Frameworks/full-gpl/libavdevice.xcframework',
+                              'Frameworks/full-gpl/libavfilter.xcframework',
+                              'Frameworks/full-gpl/libavformat.xcframework',
+                              'Frameworks/full-gpl/libavutil.xcframework',
+                              'Frameworks/full-gpl/libswresample.xcframework',
+                              'Frameworks/full-gpl/libswscale.xcframework'
   end
 
 end
